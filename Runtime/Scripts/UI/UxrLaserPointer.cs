@@ -247,6 +247,22 @@ namespace UltimateXR.UI
             get => _optionalEnableWhenLaserOn;
             set => _optionalEnableWhenLaserOn = value;
         }
+
+        /// <summary>
+        ///      Tries to get the position where the laser pointer hits an object.
+        /// </summary>
+        /// <param name="_hitPosition">The position where the laser pointer hits an object.</param>
+        /// <returns>True if the laser pointer is enabled and a hit position is calculated, false otherwise.</returns>
+        public bool TryGetLaserHitPosition(out Vector3 _hitPosition)
+        {
+            if (IsLaserEnabled)
+            {
+                _hitPosition = LaserPos + LaserDir * CurrentRayLength;
+                return true;
+            }
+            _hitPosition = Vector3.zero;
+            return false;
+        }
         
         #endregion
 
